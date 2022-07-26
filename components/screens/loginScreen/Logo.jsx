@@ -3,7 +3,7 @@ import { Center, Text, VStack, Flex} from "native-base";
 
 const Logo = () => {
     return(
-        <Center width="container">
+        <Center width="full" p="10">
             <VStack >
                 <Text fontSize="2xl">
                     The
