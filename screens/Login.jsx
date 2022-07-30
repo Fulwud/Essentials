@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     Center,
     VStack,
@@ -9,19 +9,31 @@ import {
     Text,
     Button,
     } from "native-base";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
 
 import Logo from "../components/loginScreen/Logo";
 
 function Login({ navigation }) {
 
-    const handleSignIn = () => {
-        console.log("Hello");
-        navigation.replace("Home");
+    const [email, setEmail] = useState('')
+    const [pwd, setPwd] = useState('')
+
+    const handleLogIn = () => {
+        signInWithEmailAndPassword(auth, email, pwd)
+        .then((userCredential) => {
+            const user = userCredential.user;
+            navigation.navigate("Home");
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+        });
     }
 
     const handleReg = () => {
-        console.log("Reg")
-        navigation.replace("Reg");
+        console.log("Moved to Reg Page")
+        navigation.navigate("Reg");
     }
 
     return (
@@ -35,21 +47,21 @@ function Login({ navigation }) {
             <Logo />
 
             <FormControl isRequired>
-            <Input type="text" placeholder="Username" size="lg" bg="white" />
+            <Input type="text" placeholder="Email" size="lg" bg="white" value={email} onChangeText={text => setEmail(text)}/>
             </FormControl>
 
             <FormControl isRequired>
-            <Input type="password" placeholder="Password" size="lg" bg="white" />
+            <Input type="password" placeholder="Password" size="lg" bg="white" value={pwd} onChangeText={text => setPwd(text)}/>
             </FormControl>
 
-            <Button variant="rounded" bg="green.300" onPress={() => navigation.navigate('Home')}>
+            <Button variant="rounded" bg="green.300" onPress={handleLogIn}>
             Login
             </Button>
 
             <Divider thickness="2" my="2" />
 
             <Center>
-            <Button variant="link" onPress={() => navigation.navigate('Reg')}>
+            <Button variant="link" onPress={handleReg}>
                 <HStack>
                 <Text>Don't Have an account? </Text>
                 <Text bold underline>
