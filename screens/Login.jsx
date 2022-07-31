@@ -28,12 +28,13 @@ function Login({ navigation }) {
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
+
+            alert("Incorrect Credentials " + errorCode)
         });
     }
 
     const handleReg = () => {
-        console.log("Moved to Reg Page")
-        navigation.navigate("Reg");
+        navigation.navigate("Registration Page");
     }
 
     return (
