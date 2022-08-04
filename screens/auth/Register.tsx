@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Center, VStack, FormControl, Input, Button} from "native-base";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth } from "../../firebase";
 
 
 function RegisterScreen() {

@@ -10,9 +10,10 @@ import {
     Button,
     } from "native-base";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth } from "../../firebase";
+import * as SecureStore from "expo-secure-store";
 
-import Logo from "../components/loginScreen/Logo";
+import Logo from "../../components/loginScreen/Logo";
 
 function Login({ navigation }) {
 
@@ -23,7 +24,7 @@ function Login({ navigation }) {
         signInWithEmailAndPassword(auth, email, pwd)
         .then((userCredential) => {
             const user = userCredential.user;
-            navigation.navigate("Home");
+            navigation.navigate("App");
         })
         .catch((error) => {
             const errorCode = error.code;
@@ -34,7 +35,7 @@ function Login({ navigation }) {
     }
 
     const handleReg = () => {
-        navigation.navigate("Registration Page");
+        navigation.navigate("Register");
     }
 
     return (
