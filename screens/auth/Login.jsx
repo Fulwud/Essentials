@@ -24,12 +24,11 @@ function Login({ navigation }) {
         signInWithEmailAndPassword(auth, email, pwd)
         .then((userCredential) => {
             const user = userCredential.user;
+            console.log("user ", user, " has signed in")
             navigation.navigate("App");
         })
         .catch((error) => {
             const errorCode = error.code;
-            const errorMessage = error.message;
-
             alert("Incorrect Credentials " + errorCode)
         });
     }

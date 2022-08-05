@@ -7,8 +7,8 @@ import Home from "../screens/main/Home";
 const Stack = createNativeStackNavigator();
 const AppStack = () => {
     return(
-        <Stack.Navigator screenOptions={{headerShown: false}}>
-            <Stack.Screen name="Home" component={Home}/>
+        <Stack.Navigator>
+            <Stack.Screen name="Home" component={Home} options={{headerShown: false}}/>
         </Stack.Navigator>
     );
 }

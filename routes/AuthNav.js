@@ -2,14 +2,16 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
 
 import AuthStack from '../stacks/AuthStack';
+import DrawerNav from './DrawerNav';
 
-const paths = {
+const RootPaths = createStackNavigator({
     Auth: {
         screen: AuthStack,
         navigationOptions: { header: false },
     },
-};
+    App: {
+        screen: DrawerNav,
+    }
+});
 
-const Navigator = createStackNavigator(paths);
-
-export default createAppContainer(Navigator);
+export default createAppContainer(RootPaths);
